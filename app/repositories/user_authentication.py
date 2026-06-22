@@ -13,7 +13,7 @@ class UserAuthenticationRepository:
             sql = f"select password from {DbTable.USERS.value} where user_id={user_cred.user_id}"
             cur.execute(sql)
             row = cur.fetchone()
-            user = AuthenticatedUser(user_cred.user_id,"",-1,"")
+            user = AuthenticatedUser(user_cred.user_id,None,None,None)
             if row:
                 pwd = row[0]
 
