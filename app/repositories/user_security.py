@@ -1,9 +1,7 @@
 import psycopg2
-from app.domain.models import SecurityQuestion,SecurityQuestionList,AuthenticatedUser, UserRole, UserRoleList
-from app.domain.enums import UserAuth
+from app.domain.models import AuthenticatedUser
 from app.config.sqllite_db import get_conn
-from app.domain.enums import DbTable,DbView
-from datetime import datetime
+from app.domain.enums import DbView
 
 class UserSecurityRepository:
     

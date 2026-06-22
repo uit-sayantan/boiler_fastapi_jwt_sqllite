@@ -1,7 +1,6 @@
 import psycopg2
 import json
 from app.config.sqllite_db import get_conn
-from datetime import datetime
 
 class AuditLogRepository:
 

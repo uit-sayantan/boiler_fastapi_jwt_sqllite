@@ -1,11 +1,6 @@
-from io import BytesIO, StringIO
-from app.domain.models import UserDetails
-from datetime import datetime
-
 from app.domain.enums import AuditAction
 from app.repositories.user_registration import UserRegistrationRepository
 from app.repositories.audit_log import AuditLogRepository
-from typing import List, Dict
 import json
 from app.api import models
 

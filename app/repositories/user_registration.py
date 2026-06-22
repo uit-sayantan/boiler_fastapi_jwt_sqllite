@@ -1,5 +1,4 @@
 import psycopg2
-from datetime import date, datetime 
 from app.config.sqllite_db import get_conn
 from app.domain.enums import DbTable,UiMessage
 from app.api import models

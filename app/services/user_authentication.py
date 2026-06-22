@@ -1,10 +1,8 @@
-from datetime import datetime
+
 import json
-from typing import List, Optional
 from app.repositories.user_authentication import UserAuthenticationRepository
-from app.domain.models import SecurityQuestion,SecurityQuestionList, UserCredential, AuthenticatedUser, ChangePassword, ForgetAndChangePassword, UserSecurityAnswer, UserRole, UserRoleList
+from app.domain.models import UserCredential, AuthenticatedUser 
 from app.repositories.audit_log import AuditLogRepository
-from app.api import models
 from app.domain.enums import AuditAction
 
 class UserAuthenticationtService:

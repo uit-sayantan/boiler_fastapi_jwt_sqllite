@@ -1,11 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException
 from app.api import models
 from app.services.services import get_services
-from app.domain.models import SecurityQuestionList, UserCredential, AuthenticatedUser, ChangePassword, ForgetAndChangePassword, UserSecurityAnswer, UserRole, UserRoleList, UserRoleUpdate
-from typing import List
+from app.domain.models import UserCredential
 from app.utils.common_utils import OAuthToken
 from typing import Annotated
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from fastapi.security import OAuth2PasswordRequestForm
 from app.domain.enums import OAuthData
 
 router = APIRouter()

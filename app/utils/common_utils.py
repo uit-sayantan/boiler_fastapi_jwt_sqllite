@@ -1,5 +1,4 @@
 import bcrypt
-import random
 from app.domain.enums import OAuthData
 from app.api import models
 from datetime import datetime, timedelta, timezone
@@ -9,8 +8,6 @@ from fastapi import Depends, FastAPI, HTTPException, status, Request
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jwt.exceptions import InvalidTokenError
 from app.domain.enums import  UserAuth, OAuthData, SecretKeyName
-import json
-import os
 
 class AppSecret:
     def get_secret(secret_key):

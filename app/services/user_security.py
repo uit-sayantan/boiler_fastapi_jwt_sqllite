@@ -1,12 +1,6 @@
-from datetime import datetime
-import json
-from typing import List, Optional
-from app.repositories.user_authentication import UserAuthenticationRepository
 from app.repositories.user_security import UserSecurityRepository
-from app.domain.models import SecurityQuestion,SecurityQuestionList, UserCredential, AuthenticatedUser, ChangePassword, ForgetAndChangePassword, UserSecurityAnswer, UserRole, UserRoleList
+from app.domain.models import AuthenticatedUser
 from app.repositories.audit_log import AuditLogRepository
-from app.api import models
-from app.domain.enums import AuditAction
 
 class UserSecurityService:
     def __init__(self, user_security_repo: UserSecurityRepository, audit_repo: AuditLogRepository, user_id: int):
