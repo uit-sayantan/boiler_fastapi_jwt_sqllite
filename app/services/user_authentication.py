@@ -17,29 +17,13 @@ class UserAuthenticationtService:
         try:
             user = self.user_authentication.authenticateUser(user_cred)
             self.audit_repo.create({
-              'requester_emp_id': self.user_id,
-              'action': AuditAction.AUTHENTICATE.value,
-              'object_type': 'user_password',
-              'object_id': self.user_id,
-              'details': json.dumps({'requester_emp_id': self.user_id})
+                'user_id': self.user_id,
+                'action': AuditAction.AUTHENTICATE.value,
+                'object': json.dumps({'user_id': self.user_id})
             })
             return user
         except Exception as e:
             print(f"Service error: {e}")
             raise
     
-    def forget_and_change_password(self, change_pwd: ForgetAndChangePassword) -> models.UiMessageModel:
-        try:
-            status = self.user_authentication.forgetAndChangePassword(change_pwd)
-            self.audit_repo.create({
-              'requester_emp_id': self.user_id,
-              'action': AuditAction.UPDATE.value,
-              'object_type': 'user_password',
-              'object_id': self.user_id,
-              'details': json.dumps({'requester_emp_id': self.user_id})
-            })
-            return status
-        except Exception as e:
-            print(f"Service error: {e}")
-            raise
     

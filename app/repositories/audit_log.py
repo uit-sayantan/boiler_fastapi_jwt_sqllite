@@ -1,6 +1,6 @@
 import psycopg2
 import json
-from app.config.db import get_conn, release_conn
+from app.config.sqllite_db import get_conn
 from datetime import datetime
 
 class AuditLogRepository:
@@ -9,14 +9,13 @@ class AuditLogRepository:
         try:
             conn = get_conn()
             cur = conn.cursor()
+            print(audit_log)
             cur.execute(
-                "INSERT INTO audit (action, requester_emp_id,object_type, object_id, details) VALUES (%s, %s, %s, %s, %s)",
+                "INSERT INTO audit (user_id,action,object) VALUES (?, ?, ?)",
                 (
+                    audit_log["user_id"],
                     audit_log["action"],
-                    audit_log["requester_emp_id"],
-                    audit_log["object_type"],
-                    audit_log["object_id"],
-                    json.dumps(audit_log["details"]),
+                    json.dumps(audit_log["object"])
                 ),
             )
             conn.commit()
@@ -25,4 +24,4 @@ class AuditLogRepository:
             print(f"Database error: {e}")
             raise
         finally:
-            release_conn(conn)
+            conn.close()

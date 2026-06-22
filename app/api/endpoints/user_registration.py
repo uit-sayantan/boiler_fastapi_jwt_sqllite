@@ -10,11 +10,9 @@ router = APIRouter()
 @router.post("/user_registration/user_registration", response_model=models.UiMessageModel)
 def user_registration(body_input: models.UserRegistration, services: dict = Depends(get_services)):
     services = services["user_registration"]
-    services.user_id=body_input.emp_id
+    services.user_id=body_input.user_id
     try:
-        ui_message = services.user_registration(body_input.emp_id, body_input.emp_name, body_input.email_id,
-         body_input.location_id, body_input.lob_id, body_input.learning_plan_id, body_input.specialization_id, body_input.role_id,body_input.tl_emp_id,
-         body_input.password,body_input.question_id_1,body_input.answer_1,body_input.question_id_2,body_input.answer_2)
+        ui_message = services.user_registration(body_input.user_id, body_input.user_name, body_input.password)
         return ui_message
 
     except UserExists as e:

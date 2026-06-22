@@ -9,17 +9,19 @@ from app.api.endpoints import user_registration
 
 from app.utils.common_utils import OAuthToken
 
-from app.config.db import init_pool, close_pool
+#from app.config.db import init_pool, close_pool
 
 app = FastAPI()
 
 @app.on_event("startup")
 def startup_event():
-    init_pool()
+    #init_pool()
+    pass
 
 @app.on_event("shutdown")
 def shutdown_event():
-    close_pool()
+    #close_pool()
+    pass
 
 
 app.include_router(user_registration.router,tags=["user_registration"])

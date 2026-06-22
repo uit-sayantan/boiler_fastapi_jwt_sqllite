@@ -1,4 +1,3 @@
-import pandas as pd
 from io import BytesIO, StringIO
 from app.domain.models import UserDetails
 from datetime import datetime
@@ -17,20 +16,14 @@ class UserRegistrationService:
         self.audit_repo = audit_repo
         self.user_id = user_id
 
-    def user_registration(self,emp_id:int,emp_name:str,email_id:str,location_id:int,lob_id:int,learning_plan_id:int,
-                            specialization_id:int,role_id:int,tl_emp_id:int,password:str,question_id_1:str,
-                            answer_1:str,question_id_2:str,answer_2:str ) -> models.UiMessageModel:
+    def user_registration(self,user_id:int,user_name:str,password:str) -> models.UiMessageModel:
 
         try:
-            ui_message = self.user_registration_repo.user_registration(emp_id=emp_id,emp_name=emp_name,email_id=email_id,location_id=location_id,lob_id=lob_id,learning_plan_id=learning_plan_id,
-                            specialization_id=specialization_id,role_id=role_id,tl_emp_id=tl_emp_id,password=password,question_id_1=question_id_1,
-                            answer_1=answer_1,question_id_2=question_id_2,answer_2=answer_2)
+            ui_message = self.user_registration_repo.user_registration(user_id=user_id,user_name=user_name,password=password)
             self.audit_repo.create({
-                'requester_emp_id': self.user_id,
+                'user_id': self.user_id,
                 'action': AuditAction.REGISTER.value,
-                'object_type': 'user_details',
-                'object_id': emp_id,
-                'details': json.dumps({'emp_id': emp_id})
+                'object': json.dumps({'user_id': user_id, 'user_name': user_name})
             })
             return ui_message
         
